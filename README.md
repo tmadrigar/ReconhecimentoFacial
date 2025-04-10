@@ -1,83 +1,100 @@
-╔════════════════════════════════════════════════════╗
-║          RASTREADOR FACIAL COM SERVO MOTOR         ║
-╚════════════════════════════════════════════════════╝
 
-Este projeto realiza rastreamento facial com uma webcam 
-e movimenta um servo motor de acordo com o movimento do 
-rosto (esquerda, centro, direita).
+# 🧠 Rastreador Facial com Servo Motor
 
-A detecção é feita em Python usando OpenCV e o controle 
-do servo é feito via Arduino com comandos seriais.
+Este projeto realiza rastreamento facial com uma webcam e movimenta um servo motor de acordo com o movimento do rosto (esquerda, centro, direita).
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 TECNOLOGIAS UTILIZADAS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+A detecção é feita em Python usando OpenCV e o controle do servo motor é feito via Arduino com comandos seriais.
+
+---
+
+## 📦 Tecnologias Utilizadas
+
 - Python 3.11
-- OpenCV (opencv-python)
-- PySerial (pyserial)
+- OpenCV (`opencv-python`)
+- PySerial (`pyserial`)
 - Arduino UNO
-- Servo SG90 (ou compatível)
+- Servo motor SG90
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📁 ESTRUTURA DO PROJETO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
+
+## 📁 Estrutura do Projeto
+
+```
 ReconhecimentoFacial/
-│
-├── main.py                  → Código principal em Python
-├── requirements.txt         → Lista de dependências Python
-├── README.txt               → Este arquivo de instruções
+├── main.py                  # Código principal em Python
+├── requirements.txt         # Bibliotecas necessárias
+├── README.md                # Documentação do projeto
 │
 ├── arduino/
-│   └── servo_direcional.ino → Código do Arduino
+│   └── servo_direcional.ino # Código do Arduino
 │
-└── assets/                  → (Opcional) Imagens ou GIFs
+└── assets/                  # (Opcional) Imagens ou GIFs
+```
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚙️ COMO EXECUTAR O PROJETO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. Instale as dependências Python:
+---
+
+## ⚙️ Como Executar
+
+1. **Instale as dependências**:
+   ```bash
    pip install -r requirements.txt
+   ```
 
-2. Conecte o Arduino à porta COM (ex: COM7)
-   - Feche o Monitor Serial da IDE do Arduino
+2. **Conecte o Arduino**:
+   - Verifique a porta COM correta (ex: COM7)
+   - Feche o **Monitor Serial** da IDE do Arduino
 
-3. Execute o script Python:
+3. **Execute o script Python**:
+   ```bash
    python main.py
+   ```
 
-4. Pressione a tecla 'q' para encerrar o programa.
+4. Pressione `q` para sair do programa.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔌 CONEXÃO DO SERVO AO ARDUINO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-  Fio do Servo     →     Pino do Arduino
- ────────────────────────────────────────────────
-  Laranja (sinal)  →     9
-  Vermelho (+5V)   →     5V
-  Marrom/Preto (GND) →   GND
+## 🔌 Conexão do Servo ao Arduino
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🤖 COMPORTAMENTO DO ARDUINO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-O script Python envia os seguintes comandos via Serial:
+| Fio do Servo      | Pino do Arduino |
+|-------------------|------------------|
+| Laranja (Sinal)   | 9                |
+| Vermelho (+5V)    | 5V               |
+| Marrom/Preto (GND)| GND              |
 
-- 'E' → Gira o servo para a esquerda (posição 0º)
-- 'D' → Gira o servo para a direita (posição 180º)
-- 'C' → Retorna o servo ao centro (posição 90º)
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 OBSERVAÇÃO SOBRE DETECÇÃO FACIAL
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-O Python filtra apenas o maior rosto detectado para 
-evitar falsos positivos. A zona central entre 280-360px
-é considerada como "CENTRO".
+## 🤖 Comportamento
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👨‍💻 AUTOR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Tiago Madrigar
+- O script Python envia comandos via Serial:
+  - `'E'` → Servo gira para a **esquerda** (0°)
+  - `'D'` → Servo gira para a **direita** (180°)
+  - `'C'` → Servo retorna ao **centro** (90°)
 
-Projeto de prototipagem em visão computacional + Arduino
-Integrando software (OpenCV) e hardware (servo motor).
+- A detecção facial foi ajustada para considerar:
+  - `centro < 280` → esquerda
+  - `centro > 360` → direita
+  - Entre 280–360 → centralizado
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
+
+## 💡 Observações
+
+- Apenas o **maior rosto** detectado é considerado, para evitar falsos positivos.
+- A detecção foi calibrada com `scaleFactor=1.3`, `minNeighbors=6` e `minSize=(60, 60)`.
+
+---
+
+## 👨‍💻 Autor
+
+**Tiago Madrigar**  
+Projeto de integração entre visão computacional (Python/OpenCV) e automação com Arduino.
+
+---
+
+## 📸 Demonstração
+
+*(Adicione aqui um GIF ou imagem, se desejar. Basta colocá-la na pasta `assets/` e linkar abaixo:)*
+
+```markdown
+![Demonstração](assets/exemplo.gif)
+```
