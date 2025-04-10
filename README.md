@@ -93,8 +93,6 @@ Projeto de integração entre visão computacional (Python/OpenCV) e automação
 
 ## 📸 Demonstração
 
-*(Adicione aqui um GIF ou imagem, se desejar. Basta colocá-la na pasta `assets/` e linkar abaixo:)*
-
 ```markdown
 ![Demonstração](assets/exemplo.gif)
 ```
