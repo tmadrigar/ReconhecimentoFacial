@@ -89,7 +89,7 @@ ReconhecimentoFacial/
 **Tiago Madrigar**  
 Projeto de integração entre visão computacional (Python/OpenCV) e automação com Arduino.
 
----
+--
 
 ## 📸 Demonstração
 
